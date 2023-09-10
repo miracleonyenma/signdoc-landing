@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import logo from "./assets/logo.png";
-import control from "./assets/control.png";
-import search from "./assets/Search.png";
+import logo from "@/public/signdoc-logo.png";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
@@ -37,7 +35,7 @@ const Sidebar = () => {
           } absolute z-50 h-screen bg-gray-900 p-[0.6rem] pt-8  duration-300 md:relative md:p-5`}
         >
           <Image
-            src={control}
+            src={""}
             alt="control"
             className={`absolute -right-3 top-9 w-7 cursor-pointer rounded-full
           border-2 border-dark-purple  ${!open && "rotate-180"}`}
@@ -48,6 +46,8 @@ const Sidebar = () => {
             <Image
               src={logo}
               alt="logo"
+              height={32}
+              width={32}
               className={`cursor-pointer duration-500 ${
                 open && "rotate-[360deg]"
               }`}
@@ -57,7 +57,7 @@ const Sidebar = () => {
                 !open && "scale-0"
               }`}
             >
-              MiracleIo
+              Signdoc
             </h1>
           </div>
           <div
