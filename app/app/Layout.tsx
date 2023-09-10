@@ -4,7 +4,7 @@ import Sidebar from "@/components/appComponents/Sidebar";
 
 const appLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className="app-layout">
       <Sidebar />
       {children}
       <div>{/* Main account layout */}</div>
