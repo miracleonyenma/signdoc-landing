@@ -1,7 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import logo from "@/public/signdoc-logo.png";
+import logo from "@/public/signdoc-logoalt.png";
+import {
+  ArrowsOutLineHorizontal,
+  HouseSimple,
+  FileDashed,
+  FolderSimpleUser,
+  Desktop,
+  DropboxLogo,
+  GoogleDriveLogo,
+} from "@phosphor-icons/react";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
@@ -11,43 +20,43 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
   // adding two menu styles one for main and the other for user
   const Menus = [
-    { title: "Home", icon: "" },
-    { title: "Browse", icon: "", gap: true },
-    { title: "Activity", icon: "" },
+    { title: "Home", icon: HouseSimple },
+    { title: "Templates", icon: FileDashed, gap: false },
+    { title: "Shared with Me", icon: FolderSimpleUser },
   ];
 
   // user menu options
   const UserOptions = [
     {
-      title: "Favorite songs",
-      icon: "",
+      title: "Local file",
+      icon: Desktop,
       gap: false,
     },
-    { title: "Your playlists", icon: "", gap: false },
-    { title: "Recommendations", icon: "", gap: false },
+    { title: "Dropbox", icon: DropboxLogo, gap: false },
+    { title: "Google Drive", icon: GoogleDriveLogo, gap: false },
   ];
   return (
     <div>
-      <div className="flex">
+      <div>
         <div
           className={` ${
             open ? "w-72" : " w-0 md:w-20 "
-          } absolute z-50 h-screen bg-gray-900 p-[0.6rem] pt-8  duration-300 md:relative md:p-5`}
+          } sidebar`}
         >
-          <Image
-            src={""}
-            alt="control"
+          <div
             className={`absolute -right-3 top-9 w-7 cursor-pointer rounded-full
-          border-2 border-dark-purple  ${!open && "rotate-180"}`}
+          border-2 bg-blue-100  ${!open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
-          />
+          >
+            <ArrowsOutLineHorizontal size={24} color="#2563EB" weight="fill" />
+          </div>
 
           <div className="flex items-center gap-x-4">
             <Image
               src={logo}
               alt="logo"
-              height={32}
-              width={32}
+              height={66}
+              width={66}
               className={`cursor-pointer duration-500 ${
                 open && "rotate-[360deg]"
               }`}
@@ -64,7 +73,13 @@ const Sidebar = () => {
             className={`flex flex-col gap-2 pt-10 ${!open && "hidden md:flex"}`}
           >
             {/* main options container */}
-            <p className=" text-sm text-slate-500">Main</p>
+            <p
+              className={`text-base text-white ${
+                !open ? "hidden" : "inline-block"
+              } font-bold`}
+            >
+              Navigation
+            </p>
             <ul className="">
               {Menus.map((Menu, index) => (
                 <li
@@ -74,6 +89,8 @@ const Sidebar = () => {
               ${open ? "p-2" : " flex items-center justify-center py-2"}
               `}
                 >
+                  {/* icon */}
+                  <Menu.icon weight="bold" size={24} />
                   <span
                     className={`whitespace-pre duration-500 ${
                       !open && " translate-x-28 overflow-hidden opacity-0"
@@ -100,10 +117,15 @@ const Sidebar = () => {
               !open && "hidden md:flex"
             }`}
           >
-            {/* user options container */}
-            <p className=" text-sm text-slate-500">Your Music</p>
+            <p
+              className={`text-base text-white ${
+                !open ? "hidden" : "inline-block"
+              } font-bold`}
+            >
+              Import From
+            </p>
 
-            {/* create a new playlist */}
+            {/* Import List */}
 
             <ul className="">
               {UserOptions.map((Menu, index) => (
@@ -114,6 +136,8 @@ const Sidebar = () => {
               ${open ? "p-2" : " flex items-center justify-center py-2"}
               `}
                 >
+                  {/* icon */}
+                  <Menu.icon weight="bold" size={24} />
                   <span
                     className={` whitespace-pre duration-500 ${
                       !open && " translate-x-28 overflow-hidden opacity-0"
