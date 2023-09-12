@@ -250,7 +250,14 @@
 }
 /* END SITE FOOTER */
 
+/* APP LAYOUT */
+.app-layout{
+  @apply relative;
+}
+/* END OF APP LAYOUT */
 
 /* SIDE BAR  */
-
+.sidebar{
+  @apply absolute top-0 left-0 h-screen z-10 bg-blue-600 p-[0.6rem] pt-8  duration-300 md:p-5;
+}
 /* END OF SIDE BAR  */

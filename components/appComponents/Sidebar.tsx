@@ -38,11 +38,7 @@ const Sidebar = () => {
   return (
     <div>
       <div>
-        <div
-          className={` ${
-            open ? "w-72" : " w-0 md:w-20 "
-          } sidebar`}
-        >
+        <div className={` ${open ? "w-72" : " w-0 md:w-20 "} sidebar`}>
           <div
             className={`absolute -right-3 top-9 w-7 cursor-pointer rounded-full
           border-2 bg-blue-100  ${!open && "rotate-180"}`}
@@ -84,7 +80,7 @@ const Sidebar = () => {
               {Menus.map((Menu, index) => (
                 <li
                   key={index}
-                  className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-sm text-gray-300 hover:bg-light-white 
+                  className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-white hover:bg-light-white 
               ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}
               ${open ? "p-2" : " flex items-center justify-center py-2"}
               `}
@@ -93,15 +89,16 @@ const Sidebar = () => {
                   <Menu.icon weight="bold" size={24} />
                   <span
                     className={`whitespace-pre duration-500 ${
-                      !open && " translate-x-28 overflow-hidden opacity-0"
-                    } origin-left duration-200 ${
+                      !open &&
+                      " translate-x-28 overflow-hidden opacity-0"
+                    } origin-left duration-200 text-base font-semibold text-white ${
                       open ? "inline-block" : "hidden"
                     }`}
                   >
                     {Menu.title}
                   </span>
                   <span
-                    className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
+                    className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
                       open && "hidden"
                     }`}
                   >
@@ -131,7 +128,7 @@ const Sidebar = () => {
               {UserOptions.map((Menu, index) => (
                 <li
                   key={index}
-                  className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-sm text-gray-300 hover:bg-light-white 
+                  className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-white hover:bg-light-white 
               ${Menu.gap ? "mt-9" : "mt-2"} 
               ${open ? "p-2" : " flex items-center justify-center py-2"}
               `}
@@ -141,14 +138,14 @@ const Sidebar = () => {
                   <span
                     className={` whitespace-pre duration-500 ${
                       !open && " translate-x-28 overflow-hidden opacity-0"
-                    } origin-left duration-200 ${
+                    } origin-left duration-200 text-base font-semibold text-white ${
                       open ? "inline-block" : "hidden"
                     }`}
                   >
                     {Menu.title}
                   </span>
                   <span
-                    className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
+                    className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
                       open && "hidden"
                     } `}
                   >
