@@ -238,7 +238,7 @@
 
 /* SITE FOOTER */
 .site-footer {
-  @apply bg-slate-900 mt-12;
+  @apply bg-slate-900;
 }
 
 .site-footer > .wrapper:first-child {
@@ -254,10 +254,18 @@
 .app-layout{
   @apply relative;
 }
+
+.app-layout__content{
+  @apply relative min-h-screen py-16;
+}
 /* END OF APP LAYOUT */
 
 /* SIDE BAR  */
 .sidebar{
-  @apply absolute top-0 left-0 h-screen z-10 bg-blue-600 p-[0.6rem] pt-8  duration-300 md:p-5;
+  @apply flex flex-col absolute top-0 left-0 h-screen z-10 bg-blue-600 p-[0.6rem] pt-8  duration-300 md:p-5;
+}
+
+.sidebar__link--active{
+  @apply bg-blue-500;
 }
 /* END OF SIDE BAR  */
