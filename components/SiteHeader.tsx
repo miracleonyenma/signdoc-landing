@@ -1,14 +1,12 @@
 import Image from "next/image";
 import SiteNav from "./SiteNav";
+import SiteLogo from "./SiteLogo";
 
 const SiteHeader = () => {
   return (
     <header className="site-header">
       <div className="wrapper">
-        <figure className="site-logo">
-          <Image src="/signdoc-logo.png" alt="logo" width={48} height={48} />
-        </figure>
-
+        <SiteLogo />
         <SiteNav />
       </div>
     </header>
