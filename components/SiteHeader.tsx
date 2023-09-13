@@ -6,7 +6,7 @@ const SiteHeader = () => {
     <header className="site-header">
       <div className="wrapper">
         <figure className="site-logo">
-          <Image src="/signdoc.png" alt="logo" width={48} height={48} />
+          <Image src="/signdoc-logo.png" alt="logo" width={48} height={48} />
         </figure>
 
         <SiteNav />
