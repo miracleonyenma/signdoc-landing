@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -9,63 +11,63 @@
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
- 
+
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
- 
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
- 
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
- 
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
- 
+
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
- 
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
- 
+
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
- 
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
- 
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
- 
+
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -73,4 +75,46 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.cta {
+  @apply inline-flex w-fit gap-2 items-center justify-center px-6 text-lg py-3 rounded-full font-semibold font-heading bg-blue-700 text-blue-100;
+}
+
+.site-header,
+.site-section {
+  @apply w-full px-4;
+}
+
+.site-header > .wrapper,
+.site-section > .wrapper {
+  @apply mx-auto max-w-6xl;
+}
+
+.site-header {
+  @apply sticky top-0 bg-white border-b border-blue-50;
+}
+
+.site-header > .wrapper {
+  @apply flex items-center justify-between py-4;
+}
+
+.page-hero {
+  @apply py-16;
+}
+
+.page-hero > .wrapper {
+  @apply py-12 lg:py-24 p-6 lg:px-0 text-center bg-blue-200 text-blue-900 min-h-[20rem] flex flex-col justify-center rounded-[2rem] max-w-7xl;
+}
+
+.page-hero__text-cont {
+  @apply max-w-6xl mx-auto flex flex-col items-center gap-3;
+}
+
+.page-hero__caption {
+  @apply text-4xl lg:text-7xl font-bold font-heading;
+}
+
+.page-hero__description {
+  @apply text-lg max-w-2xl mx-auto px-6 lg:px-0;
 }
