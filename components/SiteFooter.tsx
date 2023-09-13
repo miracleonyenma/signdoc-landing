@@ -1,7 +1,12 @@
+"use client"
 import Link from "next/link";
 import SiteLogo from "./SiteLogo";
+import { usePathname } from "next/navigation";
 
 const SiteFooter = () => {
+  const pathname = usePathname();
+  // check if on the app route
+  const isApp = pathname.startsWith("/app");
   const links = [
     {
       name: "Home",
@@ -25,7 +30,7 @@ const SiteFooter = () => {
     },
   ];
   return (
-    <footer className="site-footer site-section ">
+    <footer className={`site-footer ${isApp? "": "mt-12"} site-section`}>
       <div className="wrapper ">
         <header className="site-footer__header">
           <SiteLogo className="site-logo--light" isActive />
