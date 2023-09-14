@@ -1,22 +1,23 @@
+"use client";
 import React from "react";
 import Sidebar from "@/components/appComponents/Sidebar";
 import { AppContextProvider } from "@/context/AppContext";
-import { useSideBarContext } from "@/context/AppContext";
+import AppLayoutContent from "@/components/appComponents/AppLayoutContent";
 
 // creating app layout component
 
-const appLayout = ({ children }: { children: React.ReactNode }) => {
+const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppContextProvider>
       <div className="app-layout">
         <Sidebar />
-        <div className="app-layout__content">
+        <AppLayoutContent>
           {/* Main account layout */}
           {children}
-        </div>
+        </AppLayoutContent>
       </div>
     </AppContextProvider>
   );
 };
 
-export default appLayout;
+export default AppLayout;
