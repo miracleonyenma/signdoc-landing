@@ -26,7 +26,6 @@ const Sidebar = () => {
     setSideBarState,
   });
 
-  // const [open, setOpen] = useState(false);
   // adding two menu styles one for main and the other for user
   const Menus = [
     { title: "Home", icon: HouseSimple, path: "/", gap: false },
@@ -58,19 +57,22 @@ const Sidebar = () => {
       <div>
         <div
           className={` ${
-            sideBarState.isActive ? "w-72" : " w-0 md:w-20 "
+            sideBarState.isActive
+              ? "sidebar--width-active"
+              : "sidebar--width-inactive"
           } sidebar`}
         >
           <div
-            className={`absolute -right-3 top-9 w-7 cursor-pointer rounded-full
-          border-2 bg-blue-100  ${!sideBarState.isActive && "rotate-180"}`}
+            className={`sidebar__toggler  ${
+              !sideBarState.isActive && "rotate-180"
+            }`}
             onClick={handleToggleSideBar}
           >
             <ArrowsOutLineHorizontal size={24} color="#2563EB" weight="fill" />
           </div>
 
           <div
-            className={`flex items-center gap-x-4
+            className={`sidebar__logo-cont
               ${!sideBarState.isActive && "hidden md:flex"}`}
           >
             <Image
@@ -78,38 +80,36 @@ const Sidebar = () => {
               alt="logo"
               height={66}
               width={66}
-              className={`cursor-pointer duration-500 ${
+              className={`sidebar-logo ${
                 sideBarState.isActive && "rotate-[360deg]"
               }`}
             />
             <h1
-              className={`origin-left text-xl font-medium text-white duration-200 ${
-                !sideBarState.isActive && "scale-0"
-              }`}
+              className={`sidebar-title ${!sideBarState.isActive && "scale-0"}`}
             >
               Signdoc
             </h1>
           </div>
           <div
-            className={`flex flex-col gap-2 pt-10 ${
+            className={`sidebar__item-cont ${
               !sideBarState.isActive && "hidden md:flex"
             }`}
           >
             {/* main options container */}
             <p
-              className={`text-base text-white ${
+              className={`sidebar__subtitles ${
                 !sideBarState.isActive ? "hidden" : "inline-block"
-              } font-bold`}
+              }`}
             >
               Navigation
             </p>
-            <ul className="">
+            <ul>
               {Menus.map((Menu, index) => {
                 const isActive = pathname.startsWith(Menu.path);
                 return (
                   <li
                     key={index}
-                    className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-white hover:bg-light-white 
+                    className={`group gap-x-4 sidebar-list 
               ${Menu.gap ? "mt-9" : "mt-2"}
               ${
                 sideBarState.isActive
@@ -121,17 +121,14 @@ const Sidebar = () => {
                     {/* icon */}
                     <Menu.icon weight="bold" size={24} />
                     <span
-                      className={`whitespace-pre duration-500 ${
-                        !sideBarState.isActive &&
-                        " translate-x-28 overflow-hidden opacity-0"
-                      } origin-left duration-200 text-base font-semibold text-white ${
-                        sideBarState.isActive ? "inline-block" : "hidden"
-                      } `}
+                      className={`sidenav-list ${
+                        !sideBarState.isActive && "sidenav-list--inactive"
+                      }  ${sideBarState.isActive ? "inline-block" : "hidden"} `}
                     >
                       {Menu.title}
                     </span>
                     <span
-                      className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
+                      className={`sidenav--hoverlist group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
                         sideBarState.isActive && "hidden"
                       }`}
                     >
@@ -149,9 +146,9 @@ const Sidebar = () => {
             }`}
           >
             <p
-              className={`text-base text-white ${
+              className={`sidebar__subtitles ${
                 !sideBarState.isActive ? "hidden" : "inline-block"
-              } font-bold`}
+              } `}
             >
               Import From
             </p>
@@ -162,7 +159,7 @@ const Sidebar = () => {
               {UserOptions.map((Menu, index) => (
                 <li
                   key={index}
-                  className={`group flex cursor-pointer items-center gap-x-4 rounded-md text-white hover:bg-light-white 
+                  className={`group  gap-x-4 sidebar-list  
               ${Menu.gap ? "mt-9" : "mt-2"} 
               ${
                 sideBarState.isActive
@@ -174,17 +171,15 @@ const Sidebar = () => {
                   {/* icon */}
                   <Menu.icon weight="bold" size={24} />
                   <span
-                    className={` whitespace-pre duration-500 ${
+                    className={` sidenav-list ${
                       !sideBarState.isActive &&
                       " translate-x-28 overflow-hidden opacity-0"
-                    } origin-left duration-200 text-base font-semibold text-white ${
-                      sideBarState.isActive ? "inline-block" : "hidden"
-                    }`}
+                    }  ${sideBarState.isActive ? "inline-block" : "hidden"}`}
                   >
                     {Menu.title}
                   </span>
                   <span
-                    className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
+                    className={`sidenav--hoverlist group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
                       sideBarState.isActive && "hidden"
                     } `}
                   >
@@ -197,27 +192,22 @@ const Sidebar = () => {
           </div>
           {/* contact support */}
           <div
-            className={`sidebar__support group flex cursor-pointer items-center gap-x-4 rounded-md text-white hover:bg-light-white 
+            className={`sidebar__support group gap-x-4 
               ${
-                sideBarState.isActive
-                  ? "p-2"
-                  : " flex items-center justify-center py-2"
+                sideBarState.isActive ? "support--active" : " support--inactive"
               }
               ${!sideBarState.isActive && "hidden md:flex"}`}
           >
             <Question weight="bold" size={24} />
             <span
-              className={` whitespace-pre duration-500 ${
-                !sideBarState.isActive &&
-                " translate-x-28 overflow-hidden opacity-0"
-              } origin-left duration-200 text-base font-semibold text-white ${
-                sideBarState.isActive ? "inline-block" : "hidden"
-              }`}
+              className={`support-title ${
+                !sideBarState.isActive && "support-title--inactive"
+              }  ${sideBarState.isActive ? "inline-block" : "hidden"}`}
             >
               Support
             </span>
             <span
-              className={`absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
+              className={`support-hovertitle ${
                 sideBarState.isActive && "hidden"
               } `}
             >
