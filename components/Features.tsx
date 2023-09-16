@@ -19,7 +19,7 @@ const Features = () => {
 				<div className="w-full md:w-1/2 mb-4 md:mb-0 md:pr-4">
 					<Image
 						src={Features2}
-						alt="logo"
+						alt="Features_image"
 						width={500}
 						height={48}
 						className=""
@@ -43,7 +43,7 @@ const Features = () => {
 				<div className="order-2 w-full md:w-1/2 md:pr-2 mb-2 md:mb-0 mt-8">
 					<Image
 						src={Features2}
-						alt="logo"
+						alt="Features_image"
 						width={500}
 						height={48}
 						className=""
@@ -69,7 +69,7 @@ const Features = () => {
 				<div className="w-full md:w-1/2 mb-4 md:mb-0 md:pr-4">
 					<Image
 						src={Features3}
-						alt="logo"
+						alt="Features_image"
 						width={500}
 						height={48}
 						className=""
