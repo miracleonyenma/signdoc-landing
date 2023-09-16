@@ -14,6 +14,11 @@ const SiteFooter = () => {
       external: false,
     },
     {
+      name: "Features",
+      path: "/features",
+      external: false,
+    },
+    {
       name: "Hackathon",
       path: "https://signdoc-landing.vercel.app/",
       external: true,
