@@ -136,6 +136,20 @@
 }
 /* END SCROLL DOWN BTN */
 
+/*  FEATURES SECTION */
+.site-feature_title{
+  @apply text-3xl md:text-3xl font-bold font-heading
+}
+.site-feature_header {
+  @apply text-3xl md:text-5xl font-bold font-heading text-center mt-8; 
+}
+.site-feature_description{
+  @apply text-center
+}
+
+
+
+
 /* SITE HEADER */ /* SITE SECTION */
 .site-header,
 .site-section {
@@ -171,6 +185,8 @@
   @apply text-3xl lg:text-5xl font-bold font-heading;
 }
 /*  END SITE SECTION */
+
+
 
 /* PAGE HERO */
 .page-hero {
