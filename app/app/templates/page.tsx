@@ -1,8 +1,12 @@
+import AllTemplate from '@/components/appComponents/Templates/AllTemplate'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      {/* template component */}
+      <AllTemplate/>
+    </div>
   )
 }
 
