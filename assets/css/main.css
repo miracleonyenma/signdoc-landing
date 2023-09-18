@@ -337,3 +337,22 @@
   @apply absolute left-48 w-0 overflow-hidden whitespace-pre rounded-md text-sm bg-white px-0 py-0 font-semibold text-gray-900 drop-shadow-lg group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300;
 }
 /* END OF SIDE BAR  */
+
+
+/* TEMPLATE COPMPONENT */
+.template{
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-cols-max gap-6;
+}
+
+.template-card{
+  @apply h-[333px] p-3 flex flex-col gap-[10px] bg-white rounded-[32px];
+}
+
+.template-card__icon{
+  @apply rounded-3xl p-[6px] flex justify-center items-center bg-blue-100;
+}
+
+.template-card__title{
+  @apply font-medium text-[20px] py-3 pr-6;
+}
+/*END OF TEMPLATE COPMPONENT */
