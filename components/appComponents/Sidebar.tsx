@@ -30,7 +30,7 @@ const Sidebar = () => {
   const Menus = [
     { title: "Home", icon: HouseSimple, path: "/app", gap: false },
     { title: "Templates", icon: FileDashed, path: "/app/templates", gap: false },
-    { title: "Shared with Me", path: "/shared", icon: FolderSimpleUser },
+    { title: "Shared with Me", path: "/app/shared", icon: FolderSimpleUser },
   ];
 
   // user menu options
