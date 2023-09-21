@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import Link from "next/link";
-
-import { cn } from "@/lib/utils";
+import * as React from 'react'
+import Link from 'next/link'
+import SigninButton from './SigninButton'
+import { cn } from '@/lib/utils'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from '@/components/ui/navigation-menu'
 
 const SiteNav = () => {
   return (
@@ -20,18 +20,20 @@ const SiteNav = () => {
       <div className="wrapper">
         <NavigationMenu>
           <NavigationMenuList>
-            <NavigationMenuItem>
+            <NavigationMenuItem className="flex">
               <Link href="/docs" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Documentation
                 </NavigationMenuLink>
               </Link>
+
+              <SigninButton></SigninButton>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default SiteNav;
+export default SiteNav
