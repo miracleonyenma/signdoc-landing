@@ -16,7 +16,9 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="h-64 flex flex-col gap-4 justify-center items-center">
           <p>Please login first :(</p>
           {/* login user */}
-          <Button variant="default" onClick={() => signIn()}></Button>
+          <Button variant="default" onClick={() => signIn()}>
+            Login
+          </Button>
         </div>
       </>
     )
