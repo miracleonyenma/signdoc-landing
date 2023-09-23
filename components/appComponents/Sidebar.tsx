@@ -14,7 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
+import Link from "next/link";
 import { useSideBarContext } from "@/context/AppContext";
 
 const Sidebar = () => {
@@ -28,9 +28,9 @@ const Sidebar = () => {
 
   // adding two menu styles one for main and the other for user
   const Menus = [
-    { title: "Home", icon: HouseSimple, path: "/", gap: false },
-    { title: "Templates", icon: FileDashed, path: "/templates", gap: false },
-    { title: "Shared with Me", path: "/shared", icon: FolderSimpleUser },
+    { title: "Home", icon: HouseSimple, path: "/app", gap: false },
+    { title: "Templates", icon: FileDashed, path: "/app/templates", gap: false },
+    { title: "Shared with Me", path: "/app/shared", icon: FolderSimpleUser },
   ];
 
   // user menu options
@@ -105,7 +105,7 @@ const Sidebar = () => {
             </p>
             <ul>
               {Menus.map((Menu, index) => {
-                const isActive = pathname.startsWith(Menu.path);
+                const isActive = pathname == Menu.path;
                 return (
                   <li
                     key={index}
@@ -120,13 +120,13 @@ const Sidebar = () => {
                   >
                     {/* icon */}
                     <Menu.icon weight="bold" size={24} />
-                    <span
+                    <Link href={Menu.path}
                       className={`sidenav-list ${
                         !sideBarState.isActive && "sidenav-list--inactive"
                       }  ${sideBarState.isActive ? "inline-block" : "hidden"} `}
                     >
                       {Menu.title}
-                    </span>
+                    </Link>
                     <span
                       className={`sidenav--hoverlist group-hover:left-20 group-hover:w-fit group-hover:px-2 group-hover:py-1 group-hover:duration-300 ${
                         sideBarState.isActive && "hidden"
