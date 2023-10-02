@@ -7,10 +7,6 @@ import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import { AuthProvider } from './AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
-import {registerLicense} from '@syncfusion/ej2-base'
-
-const license = process.env.SYNCF;
-registerLicense(license as string)
 
 export const metadata: Metadata = {
   title: 'Create Next App',

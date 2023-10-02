@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status } = useSession()
   // check if there is a user logged in
-  if (status === 'authenticated') {
+  if (status === 'unauthenticated') {
     return (
       <>
         <div className="h-64 flex flex-col gap-4 justify-center items-center">
