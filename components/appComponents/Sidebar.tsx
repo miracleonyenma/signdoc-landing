@@ -8,23 +8,28 @@ import {
   FileDashed,
   FolderSimpleUser,
   Desktop,
-  DropboxLogo,
-  GoogleDriveLogo,
   Question,
+  SpinnerGap,
 } from "@phosphor-icons/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useSideBarContext } from "@/context/AppContext";
+import Modal from "../Modal";
+import { Button } from "../ui/button";
+import Dropzone from "../Dropzone";
+import axios from 'axios';
 
 const Sidebar = () => {
   // Sidebar context
   const pathname = usePathname();
+
+  const [uploadFile, setUploadFile] = useState(false)
+  const [file, setFile] = useState<string | Blob>('')
+  const [inputValues, setInputValues] = useState({name: '', description: ''})
+  const [isUploading, setIsUploading] = useState(false)
+
   const { sideBarState, setSideBarState } = useSideBarContext();
-  console.log({
-    sideBarState,
-    setSideBarState,
-  });
 
   // adding two menu styles one for main and the other for user
   const Menus = [
@@ -39,18 +44,43 @@ const Sidebar = () => {
       title: "Local file",
       icon: Desktop,
       gap: false,
+      uploadFile: () => setUploadFile(true)
     },
-    { title: "Dropbox", icon: DropboxLogo, gap: false },
-    { title: "Google Drive", icon: GoogleDriveLogo, gap: false },
+    // { title: "Dropbox", icon: DropboxLogo, gap: false },
+    // { title: "Google Drive", icon: GoogleDriveLogo, gap: false },
   ];
 
   const handleToggleSideBar = () => {
-    console.log(sideBarState.isActive);
     setSideBarState((prevState) => ({
       ...prevState,
       isActive: !prevState.isActive,
     }));
   };
+
+  const handleFileUpload = async (e: any) => {
+    e.preventDefault()
+
+    setIsUploading(true)
+    const formData = new FormData()
+    formData.append('doc', file)
+    formData.append('name', inputValues.name)
+    inputValues.description && formData.append('description', inputValues.description)
+    
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/documents`, formData, config)
+      console.log(res, 'This is the response')
+      setIsUploading(false)
+      // setUploadFile(false)
+    }catch(err) {
+      setIsUploading(false)
+    }
+   
+  }
 
   return (
     <div>
@@ -159,6 +189,7 @@ const Sidebar = () => {
               {UserOptions.map((Menu, index) => (
                 <li
                   key={index}
+                  onClick={Menu.uploadFile}
                   className={`group  gap-x-4 sidebar-list  
               ${Menu.gap ? "mt-9" : "mt-2"} 
               ${
@@ -217,6 +248,42 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+      <Modal
+        open={uploadFile}
+        onClose={() => setUploadFile(false)}
+      >
+        <h2 className="font-semibold text-xl mb-5">Upload document</h2>
+        <form className="flex flex-col gap-4" onSubmit={handleFileUpload}>
+          <div>
+            <label htmlFor="name" className="block mb-1">Document name <span className="text-red-500">*</span></label>
+            <input 
+              id="name"
+              type="text" 
+              value={inputValues.name}
+              onChange={(e) => setInputValues({...inputValues, name: e.target.value})}
+              className="h-[40px] border w-full border-solid rounded-md border-gray-300 px-2 focus:outline-none"
+              placeholder="Enter name" />
+          </div>
+          <div>
+            <label htmlFor="description" className="block mb-1">Document description</label>
+            <textarea 
+              value={inputValues.description}
+              onChange={(e) => setInputValues({...inputValues, description: e.target.value})}
+              id="description"
+              className="w-full border border-solid rounded-md border-gray-300 p-2 h-[100px] focus:outline-none"
+              placeholder="Enter description">
+            </textarea>
+          </div>
+          <Dropzone
+            setFile={setFile}
+           />
+          <Button 
+            disabled={!inputValues.name || !file || isUploading}
+            className="w-fit ml-auto mt-3">
+              Upload <SpinnerGap size={20} className={`ml-1 ${isUploading ? 'animate-spin' : 'hidden'}`}/>
+          </Button>
+        </form>
+      </Modal>
     </div>
   );
 };
