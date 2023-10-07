@@ -5,13 +5,12 @@ import { authOptions } from "@/utils/authOptions";
 import * as yup from 'yup';
 import {handleUpload} from '../../../server/utils/cloudinary'
 
-export const GET = connectDB(async (req, res) => {
+export const GET = connectDB(async (req) => {
   const session = await getServerSession(authOptions);
   if(!session) return new Response("Unauthorized access detected", { status: 401})
   try {
-    const document = await Document.findOne(req.body.id)
-    if(document.email !== session.user.email) return new Response("Unable to access document", {status: 403})
-    return new Response(JSON.stringify(document), {status: 200, headers: {'content-type': 'application/json'}})
+    const documents = await Document.find({email: session.user.email}).select(['-createdAt', '-updatedAt', '-__v'])
+    return new Response(JSON.stringify(documents), {status: 200, headers: {'content-type': 'application/json'}})
   }catch (err) {
     console.log(err, 'Error occurred while fetching document');
     new Response("Internal Server Error", {status: 500})
