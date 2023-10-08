@@ -12,6 +12,14 @@ export const authOptions: NextAuthOptions = {
   //       signIn: "/auth/signin",
   //       signOut: '/auth/signout',
   //   },
-
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url) return `${baseUrl}/app`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
+    },
+  },
   secret: process.env.SECRET,
 }
