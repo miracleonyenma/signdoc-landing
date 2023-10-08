@@ -138,16 +138,29 @@
 /* END SCROLL DOWN BTN */
 
 /*  FEATURES SECTION */
+
 .site-feature_title {
-  @apply text-3xl md:text-3xl font-bold font-heading;
+  @apply text-3xl md:text-3xl font-bold font-heading mt-5 mb-5;
 }
-.site-feature_header {
-  @apply text-3xl md:text-5xl font-bold font-heading text-center mt-8;
-}
-.site-feature_description {
-  @apply text-center;
+.site-feature_title-two {
+    @apply text-lg md:text-lg font-bold font-heading mt-5 mb-5 text-blue-700;
 }
 
+.site-feature_title-three {
+  @apply text-lg md:text-lg font-bold font-heading mt-5 mb-5 text-blue-500 text-center;
+}
+
+
+.site-feature_header {
+  @apply text-3xl md:text-4xl font-bold font-heading text-center mt-6 mb-6 flex justify-center items-center my-5;
+}
+.site-feature_description {
+  @apply text-center mt-3 mb-7;
+}
+/* SITE Mini Features */
+.Head {
+  @apply mx-auto max-w-5xl ;
+}
 /* SITE HEADER */ /* SITE SECTION */
 .site-header,
 .site-section {
