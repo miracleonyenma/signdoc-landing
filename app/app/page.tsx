@@ -1,15 +1,35 @@
 "use client";
 
 import UploadDocumentModal from "@/components/UploadDocumentModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
 	Signature,
 	UploadSimple,
 	Pencil,
 	ClockCounterClockwise,
+	FilePdf
 } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
+
 const page = () => {
 	const [uploadFile, setUploadFile] = useState(false);
+	const [documents, setDocuments] = useState([]);
+	const router = useRouter()
+
+	useEffect(() => {
+		async function fetchDocuments() {
+			try {
+				const response = await axios.get(`/api/documents`);
+				setDocuments(response.data);
+				console.log(response.data);
+			} catch (error) {
+				console.error("Error fetching documents:", error);
+			}
+		}
+
+		fetchDocuments();
+	}, []);
 
 	return (
 		<div>
@@ -68,6 +88,20 @@ const page = () => {
 				</div>
 			</button>
 			<UploadDocumentModal open={uploadFile} setOpen={setUploadFile} />
+
+			{/*Display */}
+			<div className="Display">
+				
+				<ul>
+					{documents.map((doc, index) => (
+						<li className="bg-white rounded-lg p-3 mb-2 flex items-center cursor" key={index} onClick={()=>{
+							router.push('/app/preview')
+						}}>
+							<FilePdf size={40} /> <h3 className="Documents">{doc.name}</h3>
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 };

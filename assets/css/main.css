@@ -173,17 +173,21 @@
 .Head {
   @apply mx-auto max-w-5xl ;
 }
+.Features-Margin{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.Features-Margins{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 /* SITE HEADER */ /* SITE SECTION */
 .site-header,
 .site-section {
   @apply w-full px-4;
 }
-@media (min-width: 768) {
-  .marv{
-    margin-right: 50px;}
-  
-}
+
 .last-feature{
 
 }
@@ -216,6 +220,18 @@
   @apply text-3xl lg:text-5xl font-bold font-heading;
 }
 /*  END SITE SECTION */
+
+/* Document Edit */
+.Documents{
+  margin-left: 29px;
+}
+.Display{
+  margin-top: 30px
+}
+.Greetings{
+  @apply text-3xl lg:text-5xl font-bold font-heading;
+}
+
 
 /* PAGE HERO */
 .page-hero {
