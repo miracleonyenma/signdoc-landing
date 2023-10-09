@@ -24,7 +24,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -41,7 +40,7 @@ export default function App() {
   // const signatureRequestApi = new DropboxSign.SignatureRequestApi();
 
   // // Configure HTTP basic authorization: api_key
-  // signatureRequestApi.username = process.env.DROPBOX_SIGN_KEY
+  // signatureRequestApi.name = process.env.DROPBOX_SIGN_KEY
   //   ? process.env.DROPBOX_SIGN_KEY
   //   : "";
 
@@ -62,8 +61,8 @@ export default function App() {
 
   // Define an interface for email pairs
   interface EmailPair {
-    username: string;
-    email: string;
+    name: string;
+    email_address: string;
   }
 
   interface FieldElements {
@@ -73,8 +72,8 @@ export default function App() {
   }
 
   const initialValues: EmailPair = {
-    username: "",
-    email: "",
+    name: "",
+    email_address: "",
   };
 
   const initialFields: FieldElements = {
@@ -90,10 +89,10 @@ export default function App() {
   });
 
   const signatorySchema = Yup.object().shape({
-    email: Yup.string()
+    email_address: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    username: Yup.string().required("Name is required"),
+    name: Yup.string().required("Name is required"),
   });
 
   const [emailPairs, setEmailPairs] = useState<EmailPair[]>([]);
@@ -104,12 +103,13 @@ export default function App() {
     form: any
   ) => {
     if (e.key === "Enter") {
-      const { username, email } = form.values;
-      if (validationSchema.isValidSync({ username, email })) {
-        const newEmailPair: EmailPair = { username, email };
+      e.preventDefault();
+      const { name, email_address } = form.values;
+      if (validationSchema.isValidSync({ name, email_address })) {
+        const newEmailPair: EmailPair = { name, email_address };
         setEmailPairs([...emailPairs, newEmailPair]);
         form.setFieldValue("name", "");
-        form.setFieldValue("email", "");
+        form.setFieldValue("email_address", "");
       }
     }
   };
@@ -122,9 +122,9 @@ export default function App() {
 
   const handleSubmit = async (values: EmailPair) => {
     console.log("ddd", emailPairs);
-    const { username, email } = values;
+    const { name, email_address } = values;
 
-    const newEmailPair: EmailPair = { username, email };
+    const newEmailPair: EmailPair = { name, email_address };
     setEmailPairs([...emailPairs, newEmailPair]);
   };
 
@@ -139,8 +139,8 @@ export default function App() {
     let order = 0; // Initialize the order
     const signers = emailPairs.map((pair) => {
       const signer = {
-        emailAddress: pair.email,
-        name: pair.username,
+        email_address: pair.email_address,
+        name: pair.name,
         order: order++,
       };
       return signer;
@@ -149,39 +149,28 @@ export default function App() {
     console.log(signers);
   }, [emailPairs]);
 
-  const handleSend = async () => {
+  const handleSend = async (value: FieldElements) => {
+    const { title, subject, message } = value;
+
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
       Authorization:
-        "Basic ",
+      `Basic ${process.env.AUTHENTICATION}`,
       "Content-Type": "application/json",
     };
 
     let bodyContent = JSON.stringify({
-      title: "NDA with Acme Co.",
-      subject: "The NDA we talked about",
-      message:
-        "Please sign this NDA and then we can discuss more. Let me know if you\nhave any questions.",
-      signers: [
-        {
-          email_address: "miracleficient@gmail.com",
-          name: "Miracle Is The Best",
-          order: 0,
-        },
-        {
-          email_address: "victorytuduo.dev@gmail.com",
-          name: "Victory",
-          order: 1,
-        },
-      ],
-      cc_email_addresses: ["lawyer@dropboxsign.com"],
+      title: title,
+      subject: subject,
+      message: message,
+      signers: emailPairs,
       file_urls: [
         "https://www.dropbox.com/s/ad9qnhbrjjn64tu/mutual-NDA-example.pdf?dl=1",
       ],
       metadata: {
         custom_id: 1234,
-        custom_text: "NDA #9",
+        custom_text: "document name",
       },
       signing_options: {
         draw: true,
@@ -261,13 +250,13 @@ export default function App() {
                     <Label htmlFor="message" className="text-right">
                       Message
                     </Label>
-                    <Textarea
+                    <Field
                       id="message"
                       name="message"
-                      className="col-span-3"
+                      className="col-span-3 signatory-textarea w-full"
                     />
                   </div>
-                  {/* Mail and username value pairs */}
+                  {/* Mail and name value pairs */}
                   <div>
                     <div>
                       {emailPairs.map((pair: EmailPair, index: number) => (
@@ -276,7 +265,7 @@ export default function App() {
                           key={index}
                           className="email-pair"
                         >
-                          {pair.username} - {pair.email}{" "}
+                          {pair.name} - {pair.email_address}{" "}
                           <button
                             type="button"
                             className="remove-button"
@@ -288,12 +277,17 @@ export default function App() {
                       ))}
                     </div>
                     <Formik
-                      initialValues={{ username: "", email: "" }}
+                      initialValues={{ name: "", email_address: "" }}
                       validationSchema={signatorySchema}
                       onSubmit={(values, formikBag) => {
-                        const { username, email } = values;
-                        if (signatorySchema.isValidSync({ username, email })) {
-                          const newEmailPair: EmailPair = { username, email };
+                        const { name, email_address } = values;
+                        if (
+                          signatorySchema.isValidSync({ name, email_address })
+                        ) {
+                          const newEmailPair: EmailPair = {
+                            name,
+                            email_address,
+                          };
                           setEmailPairs([...emailPairs, newEmailPair]);
                           formikBag.resetForm(); // Clear the form fields
                         }
@@ -306,38 +300,41 @@ export default function App() {
                         >
                           <Field
                             type="text"
-                            name="username"
+                            name="name"
                             className="signatory-fields"
-                            id="username"
+                            id="name"
                             placeholder="Enter name"
                             onKeyDown={(e: any) =>
                               handleKeyDown(e, formikProps)
                             }
                           />
                           <ErrorMessage
-                            name="username"
+                            name="name"
                             component="div"
                             className="error"
                           />
                           <Field
                             type="text"
-                            name="email"
+                            name="email_address"
                             className="signatory-fields"
-                            id="email"
+                            id="email_address"
                             placeholder="Enter email"
                             onKeyDown={(e: any) =>
                               handleKeyDown(e, formikProps)
                             }
                           />
                           <ErrorMessage
-                            name="email"
+                            name="email_address"
                             component="div"
                             className="error"
                           />
                           <Button
                             type="submit"
                             variant={"ghost"}
-                            onClick={() => formikProps.submitForm()}
+                            onClick={(e) => {
+                              e.preventDefault;
+                              formikProps.submitForm();
+                            }}
                           >
                             Add
                           </Button>
@@ -346,13 +343,11 @@ export default function App() {
                     </Formik>
                   </div>
                 </div>
+                <Button type="submit" onClick={(e) => e.preventDefault}>
+                  Send
+                </Button>
               </Form>
             </Formik>
-            <DialogFooter>
-              <Button type="submit">
-                Send
-              </Button>
-            </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
@@ -367,6 +362,5 @@ export default function App() {
         `}
       </style>
     </>
-
-  )
+  );
 }
