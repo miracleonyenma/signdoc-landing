@@ -339,21 +339,43 @@
 }
 /* END OF SIDE BAR  */
 
-
 /* TEMPLATE COPMPONENT */
-.template{
+.template {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-cols-max gap-6;
 }
 
-.template-card{
+.template-card {
   @apply h-[333px] p-3 flex flex-col gap-[10px] bg-white rounded-[32px];
 }
 
-.template-card__icon{
+.template-card__icon {
   @apply rounded-3xl p-[6px] flex justify-center items-center bg-blue-100;
 }
 
-.template-card__title{
+.template-card__title {
   @apply font-medium text-[20px] py-3 pr-6;
 }
 /*END OF TEMPLATE COPMPONENT */
+
+/* SIGNATORY FIELDS */
+.signatory-save{
+  @apply w-full flex justify-end mb-12 gap-8;
+}
+.signatory-form {
+  @apply flex flex-col gap-2 mt-5;
+}
+.signatory-fields {
+  @apply px-3 py-2 rounded-md border border-gray-600;
+}
+
+.error {
+  @apply text-red-400 text-sm;
+}
+
+.signatory-info {
+  @apply flex flex-col items-start gap-4;
+}
+
+.remove-button{
+  @apply text-xl text-blue-600 font-medium ml-3;
+}
