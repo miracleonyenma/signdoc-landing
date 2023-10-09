@@ -157,16 +157,36 @@
 .site-feature_description {
   @apply text-center mt-3 mb-7;
 }
+
+.half-width {
+  flex: 1;
+  width: 50%; /* This ensures that each div takes up half of the parent's width */
+}
+
+
+
+.marv{
+  margin-right: 97px;}
+
+
 /* SITE Mini Features */
 .Head {
   @apply mx-auto max-w-5xl ;
 }
+
 /* SITE HEADER */ /* SITE SECTION */
 .site-header,
 .site-section {
   @apply w-full px-4;
 }
+@media (min-width: 768) {
+  .marv{
+    margin-right: 50px;}
+  
+}
+.last-feature{
 
+}
 .site-header > .wrapper,
 .site-section > .wrapper {
   @apply mx-auto max-w-6xl;

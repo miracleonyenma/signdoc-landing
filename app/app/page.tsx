@@ -14,7 +14,7 @@ const page = () => {
 	return (
 		<div>
 			{/* main application landing page */}
-			
+
 			<h1 className="Greetings" style={{ marginBottom: "30px" }}>
 				Good morning, Marvel
 			</h1>
@@ -40,7 +40,7 @@ const page = () => {
 						</div>
 					</button>
 				</div>
-				
+
 				{/* Document Upload element */}
 				<div className="flex">
 					<button
