@@ -77,11 +77,9 @@ const Features = () => {
 						</div>
 					</div>
 
-					{/*Second Feature */}
-
-					{/*Last Feature */}
+					{/*third Feature */}
 					<div className="Features-Margin">
-						<div className="flex flex-col md:flex-row justify-between py-4 mt-4 md:my-30 my-40">
+						<div className="flex flex-col md:flex-row justify-between py-4 mt-4">
 							<div className="w-full md:w-1/2 mb-4 md:mb-0 md:pr-4">
 								<Image
 									src={Features3}
@@ -97,6 +95,68 @@ const Features = () => {
 									For users who prefer to sign manually, a digital signatory pad
 									feature is available. This is integrated using the Dropbox
 									API.
+								</p>
+								<button className="bg-blue-600 text-white px-4 py-2 mt-4 rounded">
+									Learn More
+								</button>
+							</div>
+						</div>
+					</div>
+
+					{/*Fourth Feature */}
+					<div className="Features-Margins">
+						<div className="flex flex-col md:flex-row-reverse justify-between">
+							<div className="w-full md:w-1/2 mb-4 md:mb-0  md:pr-4">
+								<Image
+									src={Features2}
+									alt="Features_image"
+									width={400}
+									height={48}
+								/>
+							</div>
+							<div className="w-full md:w-1/2 text-left">
+								<p className="site-feature_title-two">Awesome Features</p>
+								<h2 className="site-feature_title mr-56">
+									Document Analysis and Feedback
+								</h2>
+								<p className="marv">
+									The AI scans the document to identify areas that require
+									signatures. It looks for keywords like signatory or signature
+									and any dashed or straight lines, highlighting them for the
+									user.
+								</p>
+								<br />
+								<p className="marv">
+									The AI analyzes the document for crucial clauses or terms that
+									the signatory might overlook. These key points are displayed
+									in a window on the right, with pointers directing the user to
+									their location in the document.
+								</p>
+								<button className="bg-blue-600 text-white px-4 py-2 mt-4 rounded">
+									Learn More
+								</button>
+							</div>
+						</div>
+					</div>
+					{/*Fourth Feature */}
+					<div className="Features-Margin">
+						<div className="flex flex-col md:flex-row justify-between py-4 mt-4 md:my-30 my-40">
+							<div className="w-full md:w-1/2 mb-4 md:mb-0 md:pr-4">
+								<Image
+									src={Features3}
+									alt="Features_image"
+									width={400}
+									height={48}
+								/>
+							</div>
+							<div className="w-full md:w-1/2 text-left">
+								<p className="site-feature_title-two">Awesome Features</p>
+								<h2 className="site-feature_title">Upcoming Release!</h2>
+								<p>
+									For any unclear statements, language, country laws, tax rules, or
+									unfamiliar terms, users can highlight the text which triggers the
+									AI. The AI will provide a clear explanation or definition,
+									aiding the user in understanding the content.
 								</p>
 								<button className="bg-blue-600 text-white px-4 py-2 mt-4 rounded">
 									Learn More

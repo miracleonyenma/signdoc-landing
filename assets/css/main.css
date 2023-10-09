@@ -175,11 +175,11 @@
 }
 .Features-Margin{
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .Features-Margins{
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* SITE HEADER */ /* SITE SECTION */
@@ -188,9 +188,6 @@
   @apply w-full px-4;
 }
 
-.last-feature{
-
-}
 .site-header > .wrapper,
 .site-section > .wrapper {
   @apply mx-auto max-w-6xl;
