@@ -12,10 +12,13 @@ import {
 } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useActiveDocumentContext } from "@/context/AppContext";
+import { useSession } from "next-auth/react";
 
 const Page = () => {
   const [uploadFile, setUploadFile] = useState(false);
   const { document, setDocument } = useActiveDocumentContext();
+  const { data: session, status } = useSession();
+
   interface documentSchema {
     description: string;
     email: string;
@@ -45,7 +48,7 @@ const Page = () => {
       {/* main application landing page */}
 
       <h1 className="Greetings" style={{ marginBottom: "30px" }}>
-        Good morning, Marvel
+        Good morning, {session?.user?.name}
       </h1>
       {/* Quick Actions */}
       <button style={{ marginBottom: "15px" }}>

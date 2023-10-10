@@ -7,6 +7,7 @@ import AppLayoutContent from "@/components/appComponents/AppLayoutContent";
 import { useSession, getSession, signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { AuthProvider } from "../AuthProvider";
+import SiteHeader from "@/components/SiteHeader";
 // creating app layout component
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
@@ -30,6 +31,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     <AppContextProvider>
       <div className="app-layout">
         <Sidebar />
+        <SiteHeader/>
         <AppLayoutContent>
           {/* Main account layout */}
           {children}
