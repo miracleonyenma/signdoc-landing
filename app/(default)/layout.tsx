@@ -1,11 +1,11 @@
 import SiteNav from "@/components/SiteNav";
-import "../assets/css/main.css";
+import "../../assets/css/main.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { AuthProvider } from "./AuthProvider";
+import { AuthProvider } from "../AuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
