@@ -3,7 +3,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import { MongoClient } from "mongodb"
 
-const client = new MongoClient(process.env.MONGO_URL || '');
+const client = new MongoClient(process.env.MONGO_URL || 'mongodb+srv://');
 const clientPromise = client.connect();
 
 export const authOptions: NextAuthOptions = {
