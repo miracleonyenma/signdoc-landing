@@ -6,7 +6,7 @@ const AppLayoutContent = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={` pt-3 ${
-        sideBarState.isActive ? "pl-10 md:pl-80" : "pl-10 md:pl-2"
+        sideBarState.isActive ? "pl-10 md:pl-80" : "pl-10 md:pl-24"
       } app-layout__content`}
     >
       {/* Main account layout */}
