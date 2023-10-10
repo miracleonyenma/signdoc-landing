@@ -5,8 +5,8 @@ const AppLayoutContent = ({ children }: { children: React.ReactNode }) => {
   const { sideBarState } = useSideBarContext();
   return (
     <div
-      className={` ${
-        sideBarState.isActive ? "pl-10 md:pl-80" : "pl-10 md:pl-28"
+      className={` pt-3 ${
+        sideBarState.isActive ? "pl-10 md:pl-80" : "pl-10 md:pl-2"
       } app-layout__content`}
     >
       {/* Main account layout */}
