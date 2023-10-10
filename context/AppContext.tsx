@@ -11,22 +11,34 @@ const SideBarContext = createContext<{
   setSideBarState: () => {},
 });
 
+interface activeDocument {
+  document: any | null;
+  setDocument: (document: any | null) => void;
+}
+const ActiveDocumentContext = createContext<activeDocument>(
+  {} as activeDocument
+);
+
 export const AppContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
+  const [document, setDocument] = useState<any | null>(null);
 
   const [sideBarState, setSideBarState] = useState<SideBarType>({
-    isActive: true,
+    isActive: false,
   });
 
   return (
     <SideBarContext.Provider value={{ sideBarState, setSideBarState }}>
-      {children}
+      <ActiveDocumentContext.Provider value={{ document, setDocument }}>
+        {children}
+      </ActiveDocumentContext.Provider>
     </SideBarContext.Provider>
   );
 };
 
 export const useSideBarContext = () => useContext(SideBarContext);
+export const useActiveDocumentContext = () => useContext(ActiveDocumentContext);
