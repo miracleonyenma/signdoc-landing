@@ -19,7 +19,7 @@ export const AppContextProvider = ({
   const pathname = usePathname();
 
   const [sideBarState, setSideBarState] = useState<SideBarType>({
-    isActive: true,
+    isActive: false,
   });
 
   return (
