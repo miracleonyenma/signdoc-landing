@@ -302,7 +302,7 @@
 
 /* SIDE BAR  */
 .sidebar {
-  @apply flex flex-col fixed top-0 left-0 h-screen z-10 bg-blue-600 p-[0.6rem] pt-8  duration-300 md:p-5;
+  @apply flex flex-col fixed top-0 left-0 h-screen z-[90] bg-blue-600 p-[0.6rem] pt-8  duration-300 md:p-5;
 }
 .sidebar--width-active {
   @apply w-72;
