@@ -60,7 +60,8 @@ export default function App() {
       PSPDFKit = await import("pspdfkit");
       await PSPDFKit.load({
         container,
-        document: document.file_url,
+        // document: document.file_url,
+        document: "/INV.pdf",
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
     })();
@@ -163,7 +164,7 @@ export default function App() {
 
     let headersList = {
       Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
       Authorization: `Basic ${process.env.AUTHENTICATION}`,
       "Content-Type": "application/json",
     };
