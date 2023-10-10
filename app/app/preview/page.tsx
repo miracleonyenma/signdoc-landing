@@ -30,19 +30,28 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Badge } from "@/components/ui/badge";
+import { useActiveDocumentContext } from "@/context/AppContext";
 
 // import * as DropboxSign from "@dropbox/sign";
 
 export default function App() {
   const containerRef = useRef(null);
   const { toast } = useToast();
-  //singature request api
-  // const signatureRequestApi = new DropboxSign.SignatureRequestApi();
+  const { document, setDocument } = useActiveDocumentContext();
 
-  // // Configure HTTP basic authorization: api_key
-  // signatureRequestApi.name = process.env.DROPBOX_SIGN_KEY
-  //   ? process.env.DROPBOX_SIGN_KEY
-  //   : "";
+  useEffect(() => {
+    // Get the document value from local storage
+    const storedDoc = localStorage.getItem("document");
+
+    // Check if a value was retrieved from local storage
+    if (storedDoc) {
+      // Parse the JSON string to convert it back to an object
+      const newDoc = JSON.parse(storedDoc);
+
+      // Set the parsed value to the context
+      setDocument(newDoc);
+    }
+  }, [setDocument]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -51,7 +60,7 @@ export default function App() {
       PSPDFKit = await import("pspdfkit");
       await PSPDFKit.load({
         container,
-        document: "/INV.pdf",
+        document: document.file_url,
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
     })();
@@ -155,8 +164,7 @@ export default function App() {
     let headersList = {
       Accept: "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      Authorization:
-      `Basic ${process.env.AUTHENTICATION}`,
+      Authorization: `Basic ${process.env.AUTHENTICATION}`,
       "Content-Type": "application/json",
     };
 

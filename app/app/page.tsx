@@ -1,7 +1,7 @@
 "use client";
 
 import UploadDocumentModal from "@/components/UploadDocumentModal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import {
   Signature,
@@ -11,9 +11,11 @@ import {
   FilePdf,
 } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
+import { useActiveDocumentContext } from "@/context/AppContext";
 
 const Page = () => {
   const [uploadFile, setUploadFile] = useState(false);
+  const { document, setDocument } = useActiveDocumentContext();
   interface documentSchema {
     description: string;
     email: string;
@@ -101,10 +103,12 @@ const Page = () => {
         <ul>
           {documents.map((doc, index) => (
             <li
-              className="bg-white rounded-lg p-3 mb-2 flex items-center cursor"
+              className="bg-white rounded-lg p-3 mb-2 flex items-center hover:cursor-pointer"
               key={index}
               onClick={() => {
-                router.push("/app/preview");
+                localStorage.setItem("document", JSON.stringify(doc));
+                setDocument(doc);
+                router.push(`/app/preview?${doc._id}`);
               }}
             >
               <FilePdf size={40} /> <h3 className="Documents">{doc.name}</h3>
