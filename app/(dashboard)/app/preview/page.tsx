@@ -60,8 +60,8 @@ export default function App() {
       PSPDFKit = await import("pspdfkit");
       await PSPDFKit.load({
         container,
-        // document: document.file_url,
-        document: "/INV.pdf",
+        document: document.file_url,
+        // document: "/INV.pdf",
         baseUrl: `${window.location.protocol}//${window.location.host}/`,
       });
     })();
@@ -175,11 +175,11 @@ export default function App() {
       message: message,
       signers: emailPairs,
       file_urls: [
-        "https://www.dropbox.com/s/ad9qnhbrjjn64tu/mutual-NDA-example.pdf?dl=1",
+        document.file_url,
       ],
       metadata: {
         custom_id: 1234,
-        custom_text: "document name",
+        custom_text: document.name,
       },
       signing_options: {
         draw: true,
@@ -338,7 +338,7 @@ export default function App() {
                             className="error"
                           />
                           <Button
-                            type="submit"
+                            
                             variant={"ghost"}
                             onClick={(e) => {
                               e.preventDefault;
