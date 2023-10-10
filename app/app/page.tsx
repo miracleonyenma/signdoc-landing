@@ -14,7 +14,14 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [uploadFile, setUploadFile] = useState(false);
-  const [documents, setDocuments] = useState([]);
+  interface documentSchema {
+    description: string;
+    email: string;
+    file_url: string;
+    name: string;
+    _id: string;
+  }
+  const [documents, setDocuments] = useState<documentSchema[]>([]);
   const router = useRouter();
 
   useEffect(() => {
